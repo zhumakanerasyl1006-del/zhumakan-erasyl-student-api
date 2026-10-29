@@ -230,4 +230,9 @@ The Student Management API supports the following operations:
 | DELETE | /api/students/{id} | Delete a student |
 
 The API uses JSON request and response bodies.
-Project status: Main branch version
+## Merge Conflict Resolution
+
+Both branches were successfully merged.
+- Main branch: Project status updated.
+- Feature branch: README documentation updated.
+
