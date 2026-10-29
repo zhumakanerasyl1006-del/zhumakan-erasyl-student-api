@@ -216,3 +216,17 @@ README обновлён для Part 2, поэтому историческая �
 `backups/Zhumakan_Erasyl_README.md` теперь соответствует README этапа 1,
 а не текущему README. Это ожидаемо; backup не перезаписывался.
 `>` перезаписывает файл, `>>` дописывает в конец.
+
+## CRUD API — Feature Branch
+
+The Student Management API supports the following operations:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/students | Create a student |
+| GET | /api/students | List all students |
+| GET | /api/students/{id} | Get a student by ID |
+| PUT | /api/students/{id} | Update a student |
+| DELETE | /api/students/{id} | Delete a student |
+
+The API uses JSON request and response bodies.
