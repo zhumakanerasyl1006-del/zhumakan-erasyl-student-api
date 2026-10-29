@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: student_db
+      POSTGRES_USER: student_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - student_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U student_user -d student_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  student-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/student_db
+      DB_USERNAME: student_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      SERVER_PORT: 8080
+      SEED_DEMO_STUDENT: "false"
+    ports:
+      - "8080:8080"
+    networks:
+      - student_network
+
+volumes:
+  postgres_data:
+
+networks:
+  student_network:
+    driver: bridge

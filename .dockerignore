@@ -1,0 +1,14 @@
+.git
+.gradle
+.tools
+build
+**/build
+logs
+.env
+.env.*
+.idea
+.vscode
+*.log
+*.zip
+backups
+docs
