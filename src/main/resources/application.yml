@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: zhumakan-erasyl-student-api
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+app:
+  seed-demo-student: ${SEED_DEMO_STUDENT:false}

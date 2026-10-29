@@ -1,0 +1,57 @@
+$ java -version
+NOT EXECUTED: [Errno 2] No such file or directory: 'java'
+$ javac -version
+NOT EXECUTED: [Errno 2] No such file or directory: 'javac'
+$ gradle --version
+NOT EXECUTED: [Errno 2] No such file or directory: 'gradle'
+$ sh -n gradlew
+
+exit code: 0
+$ ./gradlew clean build
+ERROR: JDK 21 is required. Set JAVA_HOME to an installed JDK 21.
+
+exit code: 1
+$ ./gradlew test
+ERROR: JDK 21 is required. Set JAVA_HOME to an installed JDK 21.
+
+exit code: 1
+$ sha256sum -c docs/part1-sha256.txt
+scripts/Zhumakan_Erasyl_system_report.sh: OK
+logs/Zhumakan_Erasyl_last_run.txt: OK
+logs/Zhumakan_Erasyl_part1_verification.log: OK
+logs/Zhumakan_Erasyl_system_report.log: OK
+backups/Zhumakan_Erasyl_README.md: OK
+Zhumakan_Erasyl_log_analysis.txt: OK
+
+exit code: 0
+$ stat -c %a %n scripts/Zhumakan_Erasyl_system_report.sh gradlew
+744 scripts/Zhumakan_Erasyl_system_report.sh
+755 gradlew
+
+exit code: 0
+$ curl -I --max-time 10 https://services.gradle.org/distributions/gradle-8.14.3-bin.zip
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0curl: (6) Could not resolve host: services.gradle.org
+
+exit code: 6
+$ curl -I --max-time 10 https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot/3.5.7/spring-boot-3.5.7.pom
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0curl: (6) Could not resolve host: repo.maven.apache.org
+
+exit code: 6
+127.0.0.1:5432 TCP unavailable: [Errno 1] Operation not permitted
+Official gradle-wrapper.jar exists: False
+JUnit XML result files: 0
+Java test execution: NOT STARTED. Passed: 0; failed: 0; actual test total unknown (no execution).
+
+Additional read/static checks actually completed:
+PASS: 10 production Java package declarations match directory paths.
+PASS: application.yml and application-test.yml parsed with Python yaml.safe_load.
+PASS: Dockerfile, docker-compose.yml, Jenkinsfile are still zero bytes.
+PASS: all six Part 1 SHA-256 checks repeated successfully.
+Source inventory: 26 @Test methods + 7 ValueSource cases = 33 planned executions.
+These are static checks, NOT Java compilation or JUnit execution.

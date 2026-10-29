@@ -1,0 +1,84 @@
+Stage 3 verification — 2026-10-29
+JAVA_HOME: <unset>
+
+$ java -version
+openjdk version "21.0.12.1" 2026-08-18
+OpenJDK Runtime Environment (build 21.0.12.1+1-1-26.04.4-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-26.04.4-Ubuntu, mixed mode, sharing)
+exit code: 0
+
+$ javac -version
+javac 21.0.12.1
+exit code: 0
+
+$ readlink -f /usr/bin/javac
+/usr/lib/jvm/java-21-openjdk-amd64/bin/javac
+exit code: 0
+
+$ ./gradlew --version
+ERROR: official gradle-wrapper.jar is missing (network unavailable during setup).
+Restore the official Wrapper as described in README.md before building.
+exit code: 1
+
+$ ./gradlew clean build
+ERROR: official gradle-wrapper.jar is missing (network unavailable during setup).
+Restore the official Wrapper as described in README.md before building.
+exit code: 1
+
+$ ./gradlew test --rerun-tasks
+ERROR: official gradle-wrapper.jar is missing (network unavailable during setup).
+Restore the official Wrapper as described in README.md before building.
+exit code: 1
+
+$ ./gradlew bootJar
+ERROR: official gradle-wrapper.jar is missing (network unavailable during setup).
+Restore the official Wrapper as described in README.md before building.
+exit code: 1
+
+$ sha256sum -c docs/part1-sha256.txt
+scripts/Zhumakan_Erasyl_system_report.sh: OK
+logs/Zhumakan_Erasyl_last_run.txt: OK
+logs/Zhumakan_Erasyl_part1_verification.log: OK
+logs/Zhumakan_Erasyl_system_report.log: OK
+backups/Zhumakan_Erasyl_README.md: OK
+Zhumakan_Erasyl_log_analysis.txt: OK
+exit code: 0
+
+$ curl -I --max-time 10 https://services.gradle.org/distributions/gradle-8.14.3-bin.zip
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0curl: (6) Could not resolve host: services.gradle.org
+exit code: 6
+
+$ curl -I --max-time 10 https://repo.maven.apache.org
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0curl: (6) Could not resolve host: repo.maven.apache.org
+exit code: 6
+
+$ curl -I --max-time 10 https://1.1.1.1
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+  0      0   0      0   0      0      0      0                              0
+curl: (7) failed to open socket: Operation not permitted
+exit code: 7
+
+Wrapper inventory:
+gradlew: exists
+gradlew.bat: MISSING
+gradle/wrapper/gradle-wrapper.jar: MISSING
+gradle/wrapper/gradle-wrapper.properties: exists
+JUnit XML reports: 0
+Executed tests: 0; passed: 0; failed: 0; tests never started (not a successful test run).
+Executable JAR exists: False
+Live HTTP and PostgreSQL: NOT TESTED.
+No Gradle installation/cache found in /opt, /usr/share/gradle, ~/.gradle.
+Network blocker: DNS lookup fails and direct-IP request cannot open a socket (Operation not permitted).
+No Java source or tests changed; no tests disabled.
+Protected pipeline files (SHA-256):
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  Dockerfile
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  docker-compose.yml
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  Jenkinsfile

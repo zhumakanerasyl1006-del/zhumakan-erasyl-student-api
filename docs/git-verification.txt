@@ -1,0 +1,54 @@
+DevOps Midterm — Git verification, 2026-10-29
+Author: Zhumakan Erasyl; IT2-2302; Student ID 37380
+
+Environment limitation
+.git exists as an empty read-only directory. No accessible repository metadata,
+commits, branches, tags or remotes were found. This does not prove that an
+underlying repository outside this restricted environment has no history.
+No alternate repository was created and no existing history was overwritten.
+
+Executed terminal commands (diagnostic output summarized):
+  git status --short
+    fatal: not a git repository (or any of the parent directories): .git
+  ls -la .git
+    empty directory, mode dr-xr-xr-x
+  git init -b main
+    fatal: cannot copy '/usr/share/git-core/templates/description' to
+    '/home/erasyl/zhumakan-erasyl-student-api/.git/description': Read-only file system
+  git status
+  git log --graph --oneline --all
+  git branch
+  git tag
+    Each of these four commands: fatal: not a git repository ...
+
+The first inspection used &&, so branch/remote/log commands after the failing
+status did not run. Separate final read-only inspection is recorded below.
+No commits, feature branch, merges, README conflict or annotated tag could be
+created. Existing CRUD sources were not represented as newly developed work.
+No push, browser, GitHub repository creation or remote configuration occurred.
+
+Changes prepared on disk:
+.gitignore expanded for Gradle/build output, IDE/editor state, logs, secrets
+and machine-local configuration. Gradle Wrapper JAR explicitly allowed.
+Part 1 logs remain on disk but are ignored for future staging.
+README, sources and Part 1 artifacts were not modified.
+Wrapper files present: executable gradlew, gradlew.bat,
+gradle/wrapper/gradle-wrapper.jar (43764 bytes).
+Tracked inclusion cannot be verified until repository metadata is available.
+
+Build commands:
+  ./gradlew clean build > /tmp/student-api-git-build.log 2>&1
+    Exit 1: wrapper lock under /home/erasyl/.gradle is read-only.
+  mkdir -p /tmp/student-api-gradle-home
+  cp -a /home/erasyl/.gradle/caches /home/erasyl/.gradle/wrapper /tmp/student-api-gradle-home/
+  GRADLE_USER_HOME=/tmp/student-api-gradle-home ./gradlew clean build --offline --no-daemon > /tmp/student-api-git-build.log 2>&1
+    Exit 1 before tasks/tests: Could not determine a usable wildcard IP
+    for this machine. Full output: /tmp/student-api-git-build.log.
+Previous successful results are not a successful rerun in this environment.
+
+  sha256sum -c docs/part1-sha256.txt
+    All six checksums OK, before and after the attempted build.
+
+Next prerequisite: access to actual writable Git metadata and an environment
+where Gradle can start. Review the real existing history before performing
+any commits; do not reconstruct or fabricate past CRUD development stages.

@@ -1,0 +1,40 @@
+# Gradle caches, distributions and build output
+.gradle/
+.tools/
+**/build/
+*.class
+# The Gradle Wrapper JAR is source tooling and must be committed.
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE and editor state
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+*.swp
+*~
+.DS_Store
+
+# Runtime logs (Part 1 artifacts stay on disk)
+logs/
+*.log
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+.aws/
+secrets/
+application-local.*
+application-secrets.*
+local.properties
+gradle-local.properties
